@@ -39,18 +39,18 @@ packer.init {
     },
 }
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
-    --My plugins 
-    use {'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
+    --My plugins
+    use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }
     use 'junegunn/fzf.vim'
     use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
-    use{
+    use {
         "glepnir/lspsaga.nvim",
         branch = "main"
     }
@@ -59,13 +59,13 @@ return require('packer').startup(function()
         run = ':TSUpdate'
     }
     use {
-         "williamboman/nvim-lsp-installer",
+        "williamboman/nvim-lsp-installer",
         "neovim/nvim-lspconfig",
     }
-    use {"akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
+    use { "akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
         require("toggleterm").setup()
-    end}
-    
+    end }
+
     -- Colorschemes
     use 'sainnhe/gruvbox-material'
 
