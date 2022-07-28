@@ -14,3 +14,4 @@ map("n", "<Leader>tt" ,":tabclose<CR>")
 -- Terminal
 -- TODO: Add terminal commands
 
+

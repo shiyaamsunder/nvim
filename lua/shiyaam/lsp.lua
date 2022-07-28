@@ -6,10 +6,11 @@ require("nvim-lsp-installer").setup({
 
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+    --local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
     --Mappings.
-    local opts = {noremap =true, silent=true}
+    local opts = { noremap = true, silent = true }
 
     buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
@@ -23,11 +24,24 @@ end
 
 
 nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
-  filetypes = {'typescript', 'typescriptreact', 'typescript.tsx'}
+    on_attach = on_attach,
+    filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' }
 }
 
-nvim_lsp.clangd.setup{
+nvim_lsp.clangd.setup {
     on_attach = on_attach,
-    filetypes = {"c", "cpp", "objc", "objcpp", "cuda"}
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
 }
+
+nvim_lsp.sumneko_lua.setup({
+
+    on_attach = on_attach,
+    filetypes = { "lua" },
+    settings = {
+        Lua = {
+            diagnostics = {
+                globals = { 'vim' }
+            }
+        }
+    }
+})
