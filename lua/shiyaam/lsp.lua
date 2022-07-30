@@ -23,14 +23,18 @@ local on_attach = function(client, bufnr)
 end
 
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 nvim_lsp.tsserver.setup {
     on_attach = on_attach,
-    filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' }
+    filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' },
+    capabilities = capabilities
 }
 
 nvim_lsp.clangd.setup {
     on_attach = on_attach,
-    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" }
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+    capabilities = capabilities
 }
 
 nvim_lsp.sumneko_lua.setup({
@@ -43,5 +47,6 @@ nvim_lsp.sumneko_lua.setup({
                 globals = { 'vim' }
             }
         }
-    }
+    },
+    capabilities = capabilities
 })
