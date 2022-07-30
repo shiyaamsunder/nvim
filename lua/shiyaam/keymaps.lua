@@ -1,7 +1,6 @@
 local map = function(mode, lhs, rhs)
-    vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent = true })
+  vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent = true })
 end
-
 
 -- Normal
 map("n", "<C-p>", ":Files<CR>")
