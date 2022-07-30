@@ -96,9 +96,11 @@ cmp.setup({
     fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
       -- Kind icons
-      vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-      -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      -- vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
+      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
+        nvim_lsp = "[LSP]",
+        nvim_lua = "[NVIM_LUA]",
         luasnip = "[Snippet]",
         buffer = "[Buffer]",
         path = "[Path]",
@@ -109,8 +111,10 @@ cmp.setup({
 
   },
   sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "nvim_lua" },
     { name = 'luasnip' }, -- For luasnip users.
     { name = 'buffer' },
     { name = "path" },
-  })
+  }),
 })

@@ -75,6 +75,13 @@ return require('packer').startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use 'hrsh7th/cmp-nvim-lsp'
 
+  -- Comment plugin
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
   --Snippet
   use 'L3MON4D3/LuaSnip' -- Snippet engine
 
