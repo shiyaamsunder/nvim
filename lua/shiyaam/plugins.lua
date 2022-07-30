@@ -46,6 +46,8 @@ return require('packer').startup(function(use)
   --My plugins
   use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end } -- Fuzzy Finder binary
   use 'junegunn/fzf.vim' -- Fzf vim plugin
+  use { 'windwp/nvim-autopairs', -- Auto closing for braces and quotes
+    config = function() require("nvim-autopairs").setup {} end }
 
   use {
     'nvim-lualine/lualine.nvim', -- Bottom status bar
@@ -82,6 +84,7 @@ return require('packer').startup(function(use)
       require('Comment').setup()
     end
   }
+
   --Snippet
   use 'L3MON4D3/LuaSnip' -- Snippet engine
 
