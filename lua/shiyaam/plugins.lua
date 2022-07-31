@@ -76,7 +76,7 @@ return require('packer').startup(function(use)
   use "hrsh7th/cmp-cmdline" -- cmdline completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use 'hrsh7th/cmp-nvim-lsp'
-
+  use "rafamadriz/friendly-snippets"
   -- Comment plugin
   use {
     'numToStr/Comment.nvim',
@@ -90,7 +90,7 @@ return require('packer').startup(function(use)
 
   -- Colorschemes
   use 'sainnhe/gruvbox-material' -- Colorscheme 
-
+  use { 'shaunsingh/oxocarbon.nvim', run = './install.sh' }
 
   -- Misc
   use 'wakatime/vim-wakatime' -- Code stats
