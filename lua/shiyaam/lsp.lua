@@ -4,6 +4,10 @@ require("nvim-lsp-installer").setup({
   automatic_installation = true
 })
 
+local luadev = require("lua-dev").setup()
+
+nvim_lsp.sumneko_lua.setup(luadev)
+
 -- Column signs
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
@@ -40,16 +44,29 @@ nvim_lsp.clangd.setup {
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 }
 
-nvim_lsp.sumneko_lua.setup({
-
-  on_attach = on_attach,
-  filetypes = { "lua" },
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { 'vim' }
-      }
-    }
-  },
-})
+-- nvim_lsp.sumneko_lua.setup({
+--   on_attach = on_attach,
+--   filetypes = { "lua" },
+--   settings = {
+--     Lua = {
+--       runtime = {
+--         version = "LuaJIT"
+--
+--       },
+--       diagnostics = {
+--         globals = {
+--           "vim",
+--           "describe",
+--           "it",
+--           "before_each",
+--           "after_each",
+--           "pending",
+--         }
+--       },
+--       telemetry = {
+--         enable = false,
+--       },
+--     }
+--   },
+-- })
 nvim_lsp.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())

@@ -94,7 +94,7 @@ return require('packer').startup(function(use)
 
   -- Misc
   use 'wakatime/vim-wakatime' -- Code stats
-
+  use "folke/lua-dev.nvim" -- NVIM API lua completion
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
