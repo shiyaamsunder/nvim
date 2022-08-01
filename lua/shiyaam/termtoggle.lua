@@ -1,7 +1,7 @@
 -- https://github.com/akinsho/toggleterm.nvim
 require("toggleterm").setup({
   size = 15,
-  open_mapping = [[tt]],
+  open_mapping = [[<A-t>]],
   direction = "horizontal",
   start_in_insert = true
 })
