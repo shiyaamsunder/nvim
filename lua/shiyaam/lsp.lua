@@ -41,32 +41,6 @@ nvim_lsp.tsserver.setup {
 
 nvim_lsp.clangd.setup {
   on_attach = on_attach,
-  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 }
 
--- nvim_lsp.sumneko_lua.setup({
---   on_attach = on_attach,
---   filetypes = { "lua" },
---   settings = {
---     Lua = {
---       runtime = {
---         version = "LuaJIT"
---
---       },
---       diagnostics = {
---         globals = {
---           "vim",
---           "describe",
---           "it",
---           "before_each",
---           "after_each",
---           "pending",
---         }
---       },
---       telemetry = {
---         enable = false,
---       },
---     }
---   },
--- })
 nvim_lsp.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
