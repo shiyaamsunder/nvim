@@ -8,6 +8,7 @@ map("n", "<C-h>", ":Helptags<CR>")
 map("n", "<Leader>ck", ":tabe ~/.config/nvim/lua/shiyaam/keymaps.lua<CR>")
 map("n", "<Leader>tt", ":tabclose<CR>")
 
+map("n", "<Leader>b", ":TermExec cmd='g++ -std=c++17 % -o bin/%< && bin/%<'<CR>")
 -- Fix * (Keep the cursor position, don't move to next match)
 map('n', '*', '*N')
 
