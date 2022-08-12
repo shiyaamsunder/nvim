@@ -33,7 +33,8 @@ end
 
 -- Have packer use a popup window
 packer.init {
-  display = {
+	max_jobs=1,
+	display = {
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
     end,
@@ -48,38 +49,63 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   --My plugins
-  use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end } -- Fuzzy Finder binary
-  use 'junegunn/fzf.vim' -- Fzf vim plugin
-  use { 'windwp/nvim-autopairs', -- Auto closing for braces and quotes
-    config = function() require("nvim-autopairs").setup {} end }
+  -- Lua Dev
+  use "folke/lua-dev.nvim"                                        -- NVIM API lua completion
+  use "nvim-lua/plenary.nvim"                                     -- Useful lua functions used by lots of plugins
+  use "nvim-lua/popup.nvim"                                       -- Lua API for popup in vim
+
+  -- LSP
+  use "williamboman/nvim-lsp-installer"                          -- for installing lsp servers quickly
+  use "neovim/nvim-lspconfig"                                    -- quickstart configs for lsp
+  use "jose-elias-alvarez/null-ls.nvim"                          -- for formatters and linters
+  use "RRethy/vim-illuminate"                                    -- For highlighting the other uses of current word
+
+  -- Autocompletion
+  use 'hrsh7th/nvim-cmp'                                          -- Completion plugin
+  use "hrsh7th/cmp-buffer"                                        -- buffer completions
+  use "hrsh7th/cmp-path"                                          -- path completions
+  use "hrsh7th/cmp-cmdline"                                       -- cmdline completions
+  use "saadparwaiz1/cmp_luasnip"                                  -- snippet completions
+  use 'hrsh7th/cmp-nvim-lsp'
+
+  use 'lewis6991/impatient.nvim'                                  -- Plugin to load neovim faster
+  -- File explorer
+  use {
+    'kyazdani42/nvim-tree.lua',                                   -- Nvim Tree, File explorer
+    requires = {
+      'kyazdani42/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+  }
+
+
+  -- Fuzzy Finder
+  use {                                                           -- Fuzzy Finder binary
+    'junegunn/fzf',
+    run = function() vim.fn['fzf#install']() end
+  }
+  use 'junegunn/fzf.vim'                                          -- Fzf vim plugin
+
+  use { 'windwp/nvim-autopairs',                                  -- Auto closing for braces and quotes
+  config = function() require("nvim-autopairs").setup {} end
+  }
 
   use {
-    'nvim-lualine/lualine.nvim', -- Bottom status bar
+    'nvim-lualine/lualine.nvim',                                  -- Bottom status bar
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   use {
-    "glepnir/lspsaga.nvim", -- UI for autocompletion, diagnostics, docs
+    "glepnir/lspsaga.nvim",                                       -- UI for autocompletion, diagnostics, docs
     branch = "main"
   }
   use {
-    'nvim-treesitter/nvim-treesitter', -- Good 'ol treesitter for parsing programming languages
+    'nvim-treesitter/nvim-treesitter',                            -- Good 'ol treesitter for parsing programming languages
     run = ':TSUpdate'
   }
   use {
-    "williamboman/nvim-lsp-installer", -- for installing lsp servers quickly
-    "neovim/nvim-lspconfig", -- quickstart configs for lsp
+    "akinsho/toggleterm.nvim", tag = 'v2.*',
+    config = function() require("toggleterm").setup() end
   }
-  use { "akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
-    require("toggleterm").setup()
-  end }
-
-  -- Autocompletion
-  use 'hrsh7th/nvim-cmp' -- Completion plugin
-  use "hrsh7th/cmp-buffer" -- buffer completions
-  use "hrsh7th/cmp-path" -- path completions
-  use "hrsh7th/cmp-cmdline" -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip" -- snippet completions
-  use 'hrsh7th/cmp-nvim-lsp'
 
   -- Comment plugin
   use {
@@ -90,16 +116,20 @@ return require('packer').startup(function(use)
   }
 
   --Snippet
-  use 'L3MON4D3/LuaSnip' -- Snippet engine
+  use 'L3MON4D3/LuaSnip'                                          -- Snippet engine
   use "rafamadriz/friendly-snippets"
 
   -- Colorschemes
-  use 'sainnhe/gruvbox-material' -- Colorscheme 
+  use 'sainnhe/gruvbox-material'                                  -- Colorscheme 
+  use { "ellisonleao/gruvbox.nvim" }
+  use 'B4mbus/oxocarbon-lua.nvim'
+  use "Shatur/neovim-ayu"
 
   -- Misc
-  use 'wakatime/vim-wakatime' -- Code stats
-  use "folke/lua-dev.nvim" -- NVIM API lua completion
-  use 'mfussenegger/nvim-dap' -- NVIM Debug Adapter Protocol
+  use 'wakatime/vim-wakatime'                                     -- Code stats
+
+
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
