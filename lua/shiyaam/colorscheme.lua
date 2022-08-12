@@ -1,0 +1,11 @@
+local colorscheme = "ayu-mirage"
+local g = vim.g
+
+-- g.gruvbox_material_better_performance = 1
+
+g.ayuprefermirage=true
+local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+if not status_ok then
+  vim.notify("colorscheme " .. colorscheme .. " not found!")
+  return
+end
