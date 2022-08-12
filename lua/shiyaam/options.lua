@@ -28,11 +28,13 @@ local options = {
 
   --Splits
   splitbelow=true,
-  splitright=true
+ splitright=true,
+
+  --List chars
+	list = true,
 }
 
-vim.g.gruvbox_material_better_performance = 1
-vim.cmd([[ colorscheme gruvbox-material]])
+vim.opt.listchars:append "space:."
 vim.cmd "set whichwrap+=<,>,h,l,[,]"
 for k, v in pairs(options) do
   vim.opt[k] = v

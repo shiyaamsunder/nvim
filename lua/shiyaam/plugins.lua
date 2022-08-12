@@ -69,6 +69,8 @@ return require('packer').startup(function(use)
   use 'hrsh7th/cmp-nvim-lsp'
 
   use 'lewis6991/impatient.nvim'                                  -- Plugin to load neovim faster
+  use "lukas-reineke/indent-blankline.nvim"
+
   -- File explorer
   use {
     'kyazdani42/nvim-tree.lua',                                   -- Nvim Tree, File explorer
