@@ -38,7 +38,9 @@ packer.init {
       return require("packer.util").float { border = "rounded" }
     end,
   },
-  clone_timeout=false
+  git = {
+    clone_timeout = 300
+  }
 }
 
 return require('packer').startup(function(use)
@@ -46,37 +48,37 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   --My plugins
-  use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end }  -- Fuzzy Finder binary
-  use 'junegunn/fzf.vim'                                                -- Fzf vim plugin
-  use { 'windwp/nvim-autopairs',                                        -- Auto closing for braces and quotes
+  use { 'junegunn/fzf', run = function() vim.fn['fzf#install']() end } -- Fuzzy Finder binary
+  use 'junegunn/fzf.vim' -- Fzf vim plugin
+  use { 'windwp/nvim-autopairs', -- Auto closing for braces and quotes
     config = function() require("nvim-autopairs").setup {} end }
 
   use {
-    'nvim-lualine/lualine.nvim',                                        -- Bottom status bar
+    'nvim-lualine/lualine.nvim', -- Bottom status bar
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   use {
-    "glepnir/lspsaga.nvim",                                             -- UI for autocompletion, diagnostics, docs
+    "glepnir/lspsaga.nvim", -- UI for autocompletion, diagnostics, docs
     branch = "main"
   }
   use {
-    'nvim-treesitter/nvim-treesitter',                                  -- Good 'ol treesitter for parsing programming languages
+    'nvim-treesitter/nvim-treesitter', -- Good 'ol treesitter for parsing programming languages
     run = ':TSUpdate'
   }
   use {
-    "williamboman/nvim-lsp-installer",                                  -- for installing lsp servers quickly
-    "neovim/nvim-lspconfig",                                            -- quickstart configs for lsp
+    "williamboman/nvim-lsp-installer", -- for installing lsp servers quickly
+    "neovim/nvim-lspconfig", -- quickstart configs for lsp
   }
   use { "akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
     require("toggleterm").setup()
   end }
 
   -- Autocompletion
-  use 'hrsh7th/nvim-cmp'          -- Completion plugin
-  use "hrsh7th/cmp-buffer"        -- buffer completions
-  use "hrsh7th/cmp-path"          -- path completions
-  use "hrsh7th/cmp-cmdline"       -- cmdline completions
-  use "saadparwaiz1/cmp_luasnip"  -- snippet completions
+  use 'hrsh7th/nvim-cmp' -- Completion plugin
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use 'hrsh7th/cmp-nvim-lsp'
 
   -- Comment plugin
@@ -88,16 +90,16 @@ return require('packer').startup(function(use)
   }
 
   --Snippet
-  use 'L3MON4D3/LuaSnip'              -- Snippet engine
+  use 'L3MON4D3/LuaSnip' -- Snippet engine
   use "rafamadriz/friendly-snippets"
 
   -- Colorschemes
-  use 'sainnhe/gruvbox-material'      -- Colorscheme 
+  use 'sainnhe/gruvbox-material' -- Colorscheme 
 
   -- Misc
-  use 'wakatime/vim-wakatime'         -- Code stats
-  use "folke/lua-dev.nvim"            -- NVIM API lua completion
-
+  use 'wakatime/vim-wakatime' -- Code stats
+  use "folke/lua-dev.nvim" -- NVIM API lua completion
+  use 'mfussenegger/nvim-dap' -- NVIM Debug Adapter Protocol
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
