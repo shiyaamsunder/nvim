@@ -1,6 +1,7 @@
 require("shiyaam.plugins")
 require("shiyaam.options")
 require("shiyaam.keymaps")
+require("shiyaam.colorscheme")
 require("shiyaam.lualine")
 
 require("shiyaam.lsp")
@@ -9,4 +10,5 @@ require("shiyaam.treesitter")
 require("shiyaam.termtoggle")
 require("shiyaam.autocomplete")
 require("shiyaam.autosave")
-
+require("shiyaam.nvim-tree")
+require("shiyaam.impatient")
