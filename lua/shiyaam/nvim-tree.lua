@@ -2,4 +2,10 @@ local status_ok, nvimtree = pcall(require, "nvim-tree")
 if not status_ok then
   return
 end
-nvimtree.setup()
+nvimtree.setup({
+  actions={
+    open_file={
+      quit_on_open=true
+    }
+  }
+})
