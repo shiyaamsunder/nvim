@@ -1,13 +1,5 @@
 local nvim_lsp = require('lspconfig')
 
-require("nvim-lsp-installer").setup({
-  automatic_installation = true
-})
-
-local luadev = require("lua-dev").setup()
-
-nvim_lsp.sumneko_lua.setup(luadev)
-
 -- Column signs
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
@@ -33,6 +25,11 @@ local on_attach = function(client, bufnr)
   end
 end
 
+local luadev = require("lua-dev").setup({
+  lspconfig= {on_attach=on_attach}
+})
+
+nvim_lsp.sumneko_lua.setup(luadev)
 
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
