@@ -71,6 +71,12 @@ return require('packer').startup(function(use)
   use "saadparwaiz1/cmp_luasnip"                                          -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
 
+  -- Markdown
+  use({
+    "iamcco/markdown-preview.nvim",
+    run = function() vim.fn["mkdp#util#install"]() end,
+  })
+
   -- File explorer
   use {
     "kyazdani42/nvim-tree.lua",                                           -- Nvim Tree, File explorer
