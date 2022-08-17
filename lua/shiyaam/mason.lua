@@ -1,4 +1,5 @@
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "sumneko_lua", "rust_analyzer", "tsserver", "clangd" }
+  ensure_installed = { "sumneko_lua", "rust_analyzer", "tsserver", "clangd" },
+  automatic_installation = true
 })

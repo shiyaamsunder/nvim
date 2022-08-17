@@ -17,7 +17,7 @@ local on_attach = function(client, bufnr)
 
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
 
-  if client.server_capabilities.document_formatting then
+  if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_command [[augroup Format]]
     vim.api.nvim_command [[autocmd! * <buffer>]]
     vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
@@ -26,7 +26,7 @@ local on_attach = function(client, bufnr)
 end
 
 local luadev = require("lua-dev").setup({
-  lspconfig= {on_attach=on_attach}
+  lspconfig = { on_attach = on_attach }
 })
 
 nvim_lsp.sumneko_lua.setup(luadev)
