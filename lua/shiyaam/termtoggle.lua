@@ -1,6 +1,17 @@
 -- https://github.com/akinsho/toggleterm.nvim
+
+
+-- Using powershell 7 as default shell in windows
+local CMD
+
+if vim.fn.has("win32") then
+  CMD = "pwsh.exe"
+else
+  CMD = vim.o.shell
+end
 require("toggleterm").setup({
   size = 15,
+  shell = CMD,
   open_mapping = [[<C-t>]],
   direction = "horizontal",
   start_in_insert = true
