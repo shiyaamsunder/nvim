@@ -18,12 +18,12 @@ end
 
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
--- vim.cmd [[
--- augroup packer_user_config
--- autocmd!
--- autocmd BufWritePost plugins.lua source <afile> | PackerSync
--- augroup end
--- ]]
+vim.cmd [[
+augroup packer_user_config
+autocmd!
+autocmd BufWritePost plugins.lua source <afile> | PackerInstall
+augroup end
+]]
 
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
@@ -34,7 +34,6 @@ end
 -- Have packer use a popup window
 packer.init {
   snapshot_path = fn.stdpath "config" .. "/snapshots",
-  max_jobs = 1,
   display = {
     open_fn = function()
       return require("packer.util").float { border = "rounded" }
@@ -71,6 +70,8 @@ return require('packer').startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
 
+  -- Autotag
+  use "windwp/nvim-ts-autotag"
   -- Markdown
   use({
     "iamcco/markdown-preview.nvim",
@@ -86,6 +87,7 @@ return require('packer').startup(function(use)
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
   }
 
+  use "MunifTanjim/prettier.nvim"
 
   -- Fuzzy Finder
   use { -- Fuzzy Finder binary
