@@ -9,17 +9,17 @@ end
 
 local on_attach = function(client)
 
-  if client.server_capabilities.documentFormattingProvider then
-    vim.api.nvim_command [[augroup Format]]
-    vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
-    vim.api.nvim_command [[augroup END]]
+  if client.name == "tsserver" then
+    client.server_capabilities.document_formatting = false
   end
 
-  -- if client.name == "sumneko_lua" then
-  --   client.server_capabilities.document_formatting = false
-  --   client.server_capabilities.document_range_formatting = fallback_severity
+  -- if client.server_capabilities.documentFormattingProvider then
+  --   vim.api.nvim_command [[augroup Format]]
+  --   vim.api.nvim_command [[autocmd! * <buffer>]]
+  --   vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
+  --   vim.api.nvim_command [[augroup END]]
   -- end
+
 end
 
 local luadev = require("lua-dev").setup({
