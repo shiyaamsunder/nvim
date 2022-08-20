@@ -12,13 +12,27 @@ local on_attach = function(client)
   if client.server_capabilities.documentFormattingProvider then
     vim.api.nvim_command [[augroup Format]]
     vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.format()]]
     vim.api.nvim_command [[augroup END]]
   end
+
+  -- if client.name == "sumneko_lua" then
+  --   client.server_capabilities.document_formatting = false
+  --   client.server_capabilities.document_range_formatting = fallback_severity
+  -- end
 end
 
 local luadev = require("lua-dev").setup({
-  lspconfig = { on_attach = on_attach }
+  lspconfig = {
+    on_attach = on_attach,
+    format = {
+      enable = true,
+      defaultConfig = {
+        indent_style = "space",
+        indent_size = "2",
+      }
+    }
+  }
 })
 
 nvim_lsp.sumneko_lua.setup(luadev)
