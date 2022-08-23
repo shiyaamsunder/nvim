@@ -41,6 +41,7 @@ packer.init({
 	git = {
 		clone_timeout = 300,
 	},
+  max_jobs=1
 })
 
 ---@format disable
@@ -112,6 +113,7 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',                                            -- Good 'ol treesitter for parsing programming languages
     run = ':TSUpdate'
   }
+  use'nvim-treesitter/playground'
   use {
     "akinsho/toggleterm.nvim", tag = 'v2.*',
     config = function() require("toggleterm").setup() end
