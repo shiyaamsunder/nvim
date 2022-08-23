@@ -65,3 +65,5 @@ map("n", "<S-Tab>", "gT") -- Move to previous tab
 
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
+
+map("n", "<Leader>l", ":set hlsearch!<CR>")
