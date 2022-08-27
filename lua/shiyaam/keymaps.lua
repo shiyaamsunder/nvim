@@ -1,3 +1,4 @@
+---@diagnostic disable: lowercase-global
 local map = function(mode, lhs, rhs)
   vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent = true })
 end
@@ -67,3 +68,10 @@ map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
 map("n", "<Leader>l", ":set hlsearch!<CR>")
+
+function source_lua_file()
+  vim.cmd [[luafile %]]
+  vim.cmd [[echo "sourced" ]]
+end
+
+map("n", "<Leader>sf", ":lua source_lua_file()<CR>") -- Source current luafile
