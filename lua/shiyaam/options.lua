@@ -9,7 +9,6 @@ local options = {
   relativenumber = true,
   showtabline = 2, -- always show the tabs
   signcolumn = "yes:1",
-  termguicolors = true,
   swapfile = false, -- stops creating swapfile
   undofile = true, -- persistent undo
   updatetime = 100, -- faster completion
@@ -36,6 +35,7 @@ local options = {
 
 vim.opt.listchars:append "space:."
 vim.cmd "set whichwrap+=<,>,h,l,[,]"
+-- vim.cmd [[set t_Co=256]]
 
 for k, v in pairs(options) do
   vim.opt[k] = v
