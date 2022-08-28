@@ -150,10 +150,13 @@ return require('packer').startup(function(use)
     branch = 'v2', -- optional but strongly recommended
   }
   use {
-    'goolord/alpha-nvim', -- Startup Screen
+    'goolord/alpha-nvim',                                                          -- Startup Screen
   }
 
-
+  use {
+    "folke/todo-comments.nvim",                                                    -- Todo Highlighter
+    requires = "nvim-lua/plenary.nvim",
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
