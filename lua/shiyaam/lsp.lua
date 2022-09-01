@@ -1,4 +1,6 @@
+local mason_reg = require("mason-registry")
 local nvim_lsp = require('lspconfig')
+
 
 -- Column signs
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -22,9 +24,16 @@ local on_attach = function(client)
 
 end
 
+
+local handlers = {
+  ["textDocument/hover"] =  vim.lsp.with(vim.lsp.handlers.hover, {border = "rounded"}),
+  ["textDocument/signatureHelp"] =  vim.lsp.with(vim.lsp.handlers.signature_help, {border = "rounded" }),
+}
+
 local luadev = require("lua-dev").setup({
   lspconfig = {
     on_attach = on_attach,
+    handlers=handlers,
     format = {
       enable = true,
       defaultConfig = {
@@ -46,5 +55,7 @@ nvim_lsp.clangd.setup {
   on_attach = on_attach,
 }
 
+
 -- Attaching the capablities of cmp to lspconfig
 nvim_lsp.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
