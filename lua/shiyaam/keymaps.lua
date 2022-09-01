@@ -9,8 +9,6 @@ map("n", "<Space>", "")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Plugin for showing a popup that contains the keybinds
-map("n", "<C-Space>", "<cmd>WhichKey \\<leader><cr>")
 
 -- Normal
 map("n", "<C-p>", ":Files<CR>")
@@ -18,6 +16,8 @@ map("n", "<C-h>", ":Helptags<CR>")
 map("n", "<Leader>ck", ":tabe ~/.config/nvim/lua/shiyaam/keymaps.lua<CR>")
 map("n", "<Leader>tt", ":tabclose<CR>")
 map("n", "<Leader>e", ":NvimTreeToggle<CR>") -- Opens File Explorer
+map("i", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+map("n", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 
 -- keymap for compiling c++ code. Needs some working
 map("n", "<Leader>b", ":TermExec cmd='g++ -std=c++17 % -o bin/%< && bin/%<'<CR>")
@@ -32,6 +32,8 @@ map('n', 'N', 'Nzz')
 -- Keep the curosor centered while scrolling
 map("n", "j", "jzz")
 map("n", "k", "kzz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "<C-d>", "<C-d>zz")
 
 -- Move to the next/previous buffer
 map('n', '<leader>[', ':bp<CR>')
@@ -69,9 +71,14 @@ map("v", "K", ":m '<-2<CR>gv=gv")
 
 map("n", "<Leader>l", ":set hlsearch!<CR>")
 
+-- go back to the last insert cursor position
+map("n", "gi", "gi<Esc>zzi")
+
+-- Souce current lua file
 function source_lua_file()
   vim.cmd [[luafile %]]
-  vim.cmd [[echo "sourced" ]]
+  local curr_bufname = vim.fn.bufname()
+  print(string.format("Sourced %s", curr_bufname))
 end
 
 map("n", "<Leader>sf", ":lua source_lua_file()<CR>") -- Source current luafile
