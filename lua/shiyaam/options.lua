@@ -1,5 +1,6 @@
 local options = {
   background = "dark",
+  termguicolors=true,
   --clipboard="unnamedplus",      -- allows neovim to access the system clipboard
   cmdheight = 1, -- more space in neovim command line
   conceallevel = 0, -- so that `` is visbile in markdown files
@@ -13,7 +14,7 @@ local options = {
   undofile = true, -- persistent undo
   updatetime = 100, -- faster completion
   wrap = false, -- disables wrap
-  sidescrolloff = 8,
+  sidescrolloff = 4,
   title = true,
   fileencoding = "utf-8", -- the encoding written to a file
   completeopt = { "menuone", "noselect" },
@@ -35,7 +36,7 @@ local options = {
 
 vim.opt.listchars:append "space:."
 vim.cmd "set whichwrap+=<,>,h,l,[,]"
--- vim.cmd [[set t_Co=256]]
+vim.cmd [[set t_Co=256]]
 
 for k, v in pairs(options) do
   vim.opt[k] = v
