@@ -1,9 +1,13 @@
 local action = require("lspsaga.codeaction")
+local saga = require('lspsaga')
+
+saga.init_lsp_saga({
+border_style = "rounded",
+})
 
 local map = function(mode, lhs, rhs)
   vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent = true })
 end
-
 map("n", "gd", "<cmd>Lspsaga lsp_finder<CR>")
 map("n", "gr", "<cmd>Lspsaga rename<CR>")
 map("n", "gs", "<cmd>Lspsaga signature_help<CR>")
