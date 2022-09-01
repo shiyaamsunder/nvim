@@ -1,4 +1,4 @@
-local action = require("lspsaga.action")
+local action = require("lspsaga.codeaction")
 
 local map = function(mode, lhs, rhs)
   vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent = true })

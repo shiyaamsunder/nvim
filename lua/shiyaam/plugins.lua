@@ -136,7 +136,7 @@ return require('packer').startup(function(use)
 
   -- Colorschemes
   use 'sainnhe/gruvbox-material'                                                  -- Colorscheme
-  use { "ellisonleao/gruvbox.nvim" }
+  -- use { "ellisonleao/gruvbox.nvim" }
   use 'B4mbus/oxocarbon-lua.nvim'
   use "Shatur/neovim-ayu"
 
