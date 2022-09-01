@@ -5,9 +5,9 @@ end
 
 -- Remap space as leader key
 
-map("n", "<Space>", "")
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+-- map("n", "<Space>", "")
+-- vim.g.mapleader = " "
+-- vim.g.maplocalleader = " "
 
 
 -- Normal
@@ -78,7 +78,8 @@ map("n", "gi", "gi<Esc>zzi")
 function source_lua_file()
   vim.cmd [[luafile %]]
   local curr_bufname = vim.fn.bufname()
-  print(string.format("Sourced %s", curr_bufname))
+  print("")
+  print(string.format("sourced %s", curr_bufname))
 end
 
 map("n", "<Leader>sf", ":lua source_lua_file()<CR>") -- Source current luafile
