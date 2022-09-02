@@ -1,78 +1,70 @@
 ---@diagnostic disable: lowercase-global
-local map = function(mode, lhs, rhs)
-  vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent = true })
-end
+local utils = require("shiyaam.utils")
 
--- Remap space as leader key
+local inoremap = utils.inoremap;
+local nnoremap = utils.nnoremap;
+local vnoremap = utils.vnoremap;
 
--- map("n", "<Space>", "")
--- vim.g.mapleader = " "
--- vim.g.maplocalleader = " "
-
-
--- Normal
-map("n", "<C-p>", ":Files<CR>")
-map("n", "<C-h>", ":Helptags<CR>")
-map("n", "<Leader>ck", ":tabe ~/.config/nvim/lua/shiyaam/keymaps.lua<CR>")
-map("n", "<Leader>tt", ":tabclose<CR>")
-map("n", "<Leader>e", ":NvimTreeToggle<CR>") -- Opens File Explorer
-map("i", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-map("n", "<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+nnoremap("<Leader>ck", ":tabe ~/.config/nvim/lua/shiyaam/keymaps.lua<CR>")
+nnoremap("<Leader>tt", ":tabclose<CR>")
+nnoremap("<Leader>e", ":NvimTreeToggle<CR>") -- Opens File Explorer
+inoremap("<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+nnoremap("<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 
 -- keymap for compiling c++ code. Needs some working
-map("n", "<Leader>b", ":TermExec cmd='g++ -std=c++17 % -o bin/%< && bin/%<'<CR>")
+nnoremap("<Leader>b", ":TermExec cmd='g++ -std=c++17 % -o bin/%< && bin/%<'<CR>")
 
 -- Fix * (Keep the cursor position, don't move to next match)
-map('n', '*', '*N')
+nnoremap("*", '*N')
 
 -- Fix n and N. Keeping cursor in center
-map('n', 'n', 'nzz')
-map('n', 'N', 'Nzz')
+nnoremap("n", "nzz")
+nnoremap("N", "Nzz")
 
 -- Keep the curosor centered while scrolling
-map("n", "j", "jzz")
-map("n", "k", "kzz")
-map("n", "<C-u>", "<C-u>zz")
-map("n", "<C-d>", "<C-d>zz")
+nnoremap("j", "jzz")
+nnoremap("k", "kzz")
+nnoremap("<C-u>", "<C-u>zz")
+nnoremap("<C-d>", "<C-d>zz")
 
 -- Move to the next/previous buffer
-map('n', '<leader>[', ':bp<CR>')
-map('n', '<leader>]', ':bn<CR>')
+nnoremap('<leader>[', ':bp<CR>')
+nnoremap('<leader>]', ':bn<CR>')
 
 -- Move to last buffer
-map('n', "''", ':b#<CR>')
+nnoremap("''", ':b#<CR>')
 
 --Windows
 -- Copying the vscode behaviour of making window splits
-map('n', '<C-\\>', ':vsplit<CR>')
-map('n', '<A-\\>', ':split<CR>')
+nnoremap('<C-\\>', ':vsplit<CR>')
+nnoremap('<A-\\>', ':split<CR>')
 
 -- Better Window navigation
-map("n", "<m-h>", "<C-w>h") -- Move to the left window
-map("n", "<m-j>", "<C-w>j") -- Move to bottom window
-map("n", "<m-k>", "<C-w>k") -- Move to top window
-map("n", "<m-l>", "<C-w>l") -- Move to right window
+nnoremap("<m-h>", "<C-w>h") -- Move to the left window
+nnoremap("<m-j>", "<C-w>j") -- Move to bottom window
+nnoremap("<m-k>", "<C-w>k") -- Move to top window
+nnoremap("<m-l>", "<C-w>l") -- Move to right window
 
 -- Resize with arrows
-map("n", "<C-Up>", ":resize -2<CR>")
-map("n", "<C-Down>", ":resize +2<CR>")
-map("n", "<C-Left>", ":vertical resize -2<CR>")
-map("n", "<C-Right>", ":vertical resize +2<CR>")
+nnoremap("<C-Up>", ":resize -2<CR>")
+nnoremap("<C-Down>", ":resize +2<CR>")
+nnoremap("<C-Left>", ":vertical resize -2<CR>")
+nnoremap("<C-Right>", ":vertical resize +2<CR>")
 
 -- Tabs --
-map("n", "<m-t>", ":tabnew %<cr>") -- Open current file in new tab
-map("n", "<m-y>", ":tabclose<cr>") -- Close current tab
-map("n", "<m-\\>", ":tabonly<cr>") -- Closes all tabs except the current one
-map("n", "<Tab>", "gt") -- Move to Next tab
-map("n", "<S-Tab>", "gT") -- Move to previous tab
+nnoremap("<m-t>", ":tabnew %<cr>") -- Open current file in new tab
+nnoremap("<m-y>", ":tabclose<cr>") -- Close current tab
+nnoremap("<m-\\>", ":tabonly<cr>") -- Closes all tabs except the current one
+nnoremap("<Tab>", "gt") -- Move to Next tab
+nnoremap("<S-Tab>", "gT") -- Move to previous tab
 
-map("v", "J", ":m '>+1<CR>gv=gv")
-map("v", "K", ":m '<-2<CR>gv=gv")
+vnoremap("J", ":m '>+1<CR>gv=gv")
+vnoremap("K", ":m '<-2<CR>gv=gv")
 
-map("n", "<Leader>l", ":set hlsearch!<CR>")
+nnoremap("<Leader>l", ":set hlsearch!<CR>")
 
 -- go back to the last insert cursor position
-map("n", "gi", "gi<Esc>zzi")
+nnoremap("gi", "gi<Esc>zzi")
 
 -- Souce current lua file
 function source_lua_file()
@@ -82,4 +74,4 @@ function source_lua_file()
   print(string.format("sourced %s", curr_bufname))
 end
 
-map("n", "<Leader>sf", ":lua source_lua_file()<CR>") -- Source current luafile
+nnoremap("<Leader>sf", ":lua source_lua_file()<CR>") -- Source current luafile
