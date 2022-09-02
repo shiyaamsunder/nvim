@@ -71,8 +71,15 @@ return require('packer').startup(function(use)
   use "saadparwaiz1/cmp_luasnip"                                                  -- snippet completions
   use "hrsh7th/cmp-nvim-lsp"
 
-
   use "mattn/emmet-vim"                                                           -- Emmet plugin
+
+  -- Telescope
+  use {
+    "nvim-telescope/telescope.nvim", tag='0.1.0',
+    requires = {{'nvim-lua/plenary.nvim'}}
+  }
+
+
   -- Autotag
   use "windwp/nvim-ts-autotag"
   -- Markdown
