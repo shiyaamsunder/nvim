@@ -1,4 +1,3 @@
-local mason_reg = require("mason-registry")
 local nvim_lsp = require('lspconfig')
 
 
