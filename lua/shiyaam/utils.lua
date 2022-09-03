@@ -1,9 +1,5 @@
 local Utils = {}
 
-function Utils.noremap(mode, lhs, rhs)
-  vim.api.nvim_set_keymap(mode, lhs, rhs, { noremap = true, silent = true })
-end
-
 function Utils.nnoremap(lhs, rhs)
   vim.api.nvim_set_keymap("n",lhs, rhs, { noremap = true, silent = true })
 end
