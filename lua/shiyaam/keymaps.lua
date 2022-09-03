@@ -5,11 +5,20 @@ local inoremap = utils.inoremap;
 local nnoremap = utils.nnoremap;
 local vnoremap = utils.vnoremap;
 
+
+-- Save current buffer 
+nnoremap("<C-s>", "<cmd>w<CR>")
+inoremap("<C-s>", "<cmd>w<CR>")
+
 nnoremap("<Leader>ck", ":tabe ~/.config/nvim/lua/shiyaam/keymaps.lua<CR>")
 nnoremap("<Leader>tt", ":tabclose<CR>")
+
 nnoremap("<Leader>e", ":NvimTreeToggle<CR>") -- Opens File Explorer
-inoremap("<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
-nnoremap("<C-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+
+
+-- get function signature
+inoremap("<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+nnoremap("<C-h>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
 
 -- keymap for compiling c++ code. Needs some working
 nnoremap("<Leader>b", ":TermExec cmd='g++ -std=c++17 % -o bin/%< && bin/%<'<CR>")
