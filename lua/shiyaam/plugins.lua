@@ -166,6 +166,10 @@ return require('packer').startup(function(use)
     "folke/todo-comments.nvim",                                                    -- Todo Highlighter
     requires = "nvim-lua/plenary.nvim",
   }
+
+
+  use "theprimeagen/harpoon"
+    
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
