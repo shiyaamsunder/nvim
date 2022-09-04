@@ -21,6 +21,7 @@ telescope.setup({
 utils.nnoremap("<leader>ff", "<cmd>Telescope find_files<CR>")
 utils.nnoremap("<leader>fh", "<cmd>Telescope help_tags<CR>")
 utils.nnoremap("<leader>fg", "<cmd>Telescope live_grep<CR>")
+utils.nnoremap("<leader>fc", "<cmd>lua require('telescope.builtin').live_grep({grep_open_files=true})<CR>")
 utils.nnoremap("<leader>m", "<cmd>Telescope marks<CR>")
 
 
