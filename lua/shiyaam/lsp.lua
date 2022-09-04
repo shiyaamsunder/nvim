@@ -47,14 +47,24 @@ nvim_lsp.sumneko_lua.setup(luadev)
 
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
-  filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' },
+  -- filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx' },
 }
 
 nvim_lsp.clangd.setup {
   on_attach = on_attach,
 }
 
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
+nvim_lsp.cssls.setup {
+  on_attach = on_attach,
+  capabilities=capabilities
+}
+
+nvim_lsp.emmet_ls.setup{
+  on_attach=on_attach
+}
 -- Attaching the capablities of cmp to lspconfig
 nvim_lsp.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
