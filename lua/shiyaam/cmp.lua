@@ -118,7 +118,3 @@ cmp.setup({
     { name = "path" },
   }),
 })
-local idk =  debug.getinfo(1,"S")
-
-
-print(idk.source)
