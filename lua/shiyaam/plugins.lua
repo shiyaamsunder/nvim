@@ -167,8 +167,10 @@ return require('packer').startup(function(use)
     requires = "nvim-lua/plenary.nvim",
   }
 
-
+  use 'norcalli/nvim-colorizer.lua'
   use "theprimeagen/harpoon"
+
+  use { "catppuccin/nvim", as = "catppuccin" }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
