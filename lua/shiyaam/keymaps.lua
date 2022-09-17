@@ -4,16 +4,23 @@ local utils = require("shiyaam.utils")
 local inoremap = utils.inoremap;
 local nnoremap = utils.nnoremap;
 local vnoremap = utils.vnoremap;
+local xnoremap = utils.xnoremap;
 
 
--- Save current buffer 
+-- persist previous yanked text when using `ya(w/i/W/I)`
+-- xnoremap("<leader>p", "\" _dP")
+
+vim.api.nvim_set_keymap("x", "<leader>p", "\"_dP", { noremap = true, silent = true })
+
+-- Save current buffer
 nnoremap("<C-s>", "<cmd>w<CR>")
 inoremap("<C-s>", "<cmd>w<CR>")
 
-nnoremap("<Leader>ck", ":tabe ~/.config/nvim/lua/shiyaam/keymaps.lua<CR>")
+nnoremap("<Leader>ek", ":tabe ~/.config/nvim/lua/shiyaam/keymaps.lua<CR>")
+nnoremap("<Leader>ep", ":tabe ~/.config/nvim/lua/shiyaam/plugins.lua<CR>")
 nnoremap("<Leader>tt", ":tabclose<CR>")
 
-nnoremap("<Leader>e", ":NvimTreeToggle<CR>") -- Opens File Explorer
+nnoremap("<Space>t", ":NvimTreeToggle<CR>") -- Opens File Explorer
 
 
 -- get function signature

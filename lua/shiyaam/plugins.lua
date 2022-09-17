@@ -4,16 +4,16 @@ local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 ---@diagnostic disable-next-line: missing-parameter
 if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
-	print("Installing packer close and reopen Neovim...")
-	vim.cmd([[packadd packer.nvim]])
+  PACKER_BOOTSTRAP = fn.system({
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  })
+  print("Installing packer close and reopen Neovim...")
+  vim.cmd([[packadd packer.nvim]])
 end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
@@ -27,21 +27,21 @@ augroup end
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
-	return
+  return
 end
 
 -- Have packer use a popup window
 packer.init({
-	snapshot_path = fn.stdpath("config") .. "/snapshots",
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
-		end,
-	},
-	git = {
-		clone_timeout = 300,
-	},
-  max_jobs=1
+  snapshot_path = fn.stdpath("config") .. "/snapshots",
+  display = {
+    open_fn = function()
+      return require("packer.util").float({ border = "rounded" })
+    end,
+  },
+  git = {
+    clone_timeout = 300,
+  },
+  max_jobs = 1
 })
 
 ---@format disable
@@ -59,7 +59,6 @@ return require('packer').startup(function(use)
   -- use "williamboman/nvim-lsp-installer"                                          -- for installing lsp servers quickly
   use "neovim/nvim-lspconfig"                                                     -- quickstart configs for lsp
   use "jose-elias-alvarez/null-ls.nvim"                                           -- for formatters and linters
-  use "RRethy/vim-illuminate"                                                     -- For highlighting the other uses of current word
   use { "williamboman/mason.nvim" }
   use "williamboman/mason-lspconfig.nvim"
 
@@ -153,11 +152,6 @@ return require('packer').startup(function(use)
   use 'wakatime/vim-wakatime'                                                     -- Code stats
   use "lewis6991/impatient.nvim"                                                  -- Plugin to load neovim faster
   use "lukas-reineke/indent-blankline.nvim"
-  -- Hop for easy vim motions
-  use {
-    "phaazon/hop.nvim",
-    branch = 'v2', -- optional but strongly recommended
-  }
   use {
     'goolord/alpha-nvim',                                                          -- Startup Screen
   }
@@ -171,6 +165,9 @@ return require('packer').startup(function(use)
   use "theprimeagen/harpoon"
 
   use { "catppuccin/nvim", as = "catppuccin" }
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use 'vimwiki/vimwiki'
+  use 'nvim-treesitter/nvim-treesitter-context'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

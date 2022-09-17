@@ -1,13 +1,14 @@
 local options = {
   background = "dark",
-  termguicolors=true,
-  --clipboard="unnamedplus",      -- allows neovim to access the system clipboard
+  termguicolors = true,
+  clipboard = "unnamedplus", -- allows neovim to access the system clipboard
   cmdheight = 1, -- more space in neovim command line
   conceallevel = 0, -- so that `` is visbile in markdown files
   cursorline = true, -- highlights the current line the cursor is on
   hlsearch = true, -- highlight all matches on previous search
   ignorecase = true, -- ignore case in search patterns
   relativenumber = true,
+  number = true,
   showtabline = 2, -- always show the tabs
   signcolumn = "yes:1",
   swapfile = false, -- stops creating swapfile
