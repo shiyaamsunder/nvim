@@ -82,3 +82,4 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 require("plugins")
 require("colorscheme")
 require("keymaps")
+require("lsp")
