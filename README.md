@@ -23,7 +23,9 @@ export FZF_DEFAULT_COMMAND='rg --files'
 Then clone the repo to `~/.config/nvim`
 
 ```bash
-git clone https://github.com/shiyaamsunder/nvim-config.git ~/.config/nvim
+git clone https://github.com/shiyaamsunder/nvim.git ~/.config/nvim
 ```
 
+---
 
+For a more minimal version with less plugins use the [minimal](https://github.com/shiyaamsunder/nvim/tree/minimal) branch
