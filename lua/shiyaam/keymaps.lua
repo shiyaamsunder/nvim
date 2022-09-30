@@ -1,10 +1,9 @@
 ---@diagnostic disable: lowercase-global
-local utils = require("utils")
+local utils = require("shiyaam.utils")
 
 local inoremap = utils.inoremap;
 local nnoremap = utils.nnoremap;
 local vnoremap = utils.vnoremap;
-local xnoremap = utils.xnoremap;
 
 
 -- persist previous yanked text when using `ya(w/i/W/I)`
