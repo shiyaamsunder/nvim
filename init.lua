@@ -79,6 +79,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 
 -- ==========================  Enabling plugins and setting colorscheme =============================
+
 require("shiyaam.plugins")
 require("shiyaam.colorscheme")
 require("shiyaam.keymaps")

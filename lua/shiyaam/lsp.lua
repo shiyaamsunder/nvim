@@ -1,5 +1,13 @@
-require("mason").setup()
-require("mason-lspconfig").setup({
+local status_ok, mason = pcall(require, "mason")
+local status_ok2, masonlsp = pcall(require, "mason-lspconfig")
+if not status_ok then
+  return
+end
+if not status_ok2 then
+  return
+end
+mason.setup()
+masonlsp.setup({
   ensure_installed = { "sumneko_lua", "tsserver", "clangd", "emmet_ls" },
   automatic_installation = true
 })
