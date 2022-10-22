@@ -1,11 +1,11 @@
--- ==================================== Setting options ================================================
+-- ==================================== Setting options ============================================
 local options = {
   background = "dark",
   termguicolors = true,
   clipboard = "unnamedplus",                -- allows neovim to access the system clipboard
   cmdheight = 1,                            -- more space in neovim command line
   conceallevel = 0,                         -- so that `` is visbile in markdown files
-  cursorline = true,                        -- highlights the current line the cursor is on
+  cursorline = false,                        -- highlights the current line the cursor is on
   hlsearch = true,                          -- highlight all matches on previous search
   ignorecase = true,                        -- ignore case in search patterns
   relativenumber = true,
@@ -30,6 +30,10 @@ local options = {
   splitbelow = true,
   splitright = true,
 
+  -- Wrapping
+  textwidth=100,
+  colorcolumn= "+1",
+
 }
 
 
@@ -37,7 +41,7 @@ for k, v in pairs(options) do
   vim.opt[k] = v
 end
 
--- ==========================================  Autocommands ============================================
+-- ==========================================  Autocommands ========================================
 
 -- Disable autocommenting when entering a new line
 vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
