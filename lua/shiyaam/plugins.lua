@@ -72,6 +72,8 @@ return require('packer').startup(function(use)
   -- Harpoon
   use 'theprimeagen/harpoon'
 
+  use 'andweeb/presence.nvim'
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
