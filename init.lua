@@ -3,9 +3,9 @@ local options = {
   background = "dark",
   termguicolors = true,
   clipboard = "unnamedplus",                -- allows neovim to access the system clipboard
-  cmdheight = 1,                            -- more space in neovim command line
+  cmdheight = 0,                            -- more space in neovim command line
   conceallevel = 0,                         -- so that `` is visbile in markdown files
-  cursorline = false,                        -- highlights the current line the cursor is on
+  cursorline = true,                       -- highlights the current line the cursor is on
   hlsearch = true,                          -- highlight all matches on previous search
   ignorecase = true,                        -- ignore case in search patterns
   relativenumber = true,
@@ -18,7 +18,7 @@ local options = {
   sidescrolloff = 4,
   title = true,
   fileencoding = "utf-8",                   -- the encoding written to a file
-  completeopt = { "menuone", "noselect" },
+  completeopt = { "menuone","preview","noinsert" },
 
   -- Tabs and Spaces
   expandtab = true,                         -- convert spaces to tabs
@@ -33,7 +33,6 @@ local options = {
   -- Wrapping
   textwidth=100,
   colorcolumn= "+1",
-  autochdir=false,
 
 }
 
@@ -94,3 +93,4 @@ require("shiyaam.drp")
 require("shiyaam.gitsigns")
 require("shiyaam.harpoon")
 require("shiyaam.dap")
+require("shiyaam.lline")
