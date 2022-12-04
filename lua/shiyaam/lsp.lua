@@ -8,7 +8,7 @@ if not status_ok2 then
 end
 mason.setup()
 masonlsp.setup({
-  ensure_installed = { "sumneko_lua", "tsserver", "clangd", "emmet_ls" },
+  ensure_installed = { "sumneko_lua", "tsserver", "clangd", "emmet_ls", "pyright"},
   automatic_installation = true
 })
 
@@ -80,5 +80,8 @@ require('lspconfig')['emmet_ls'].setup {
   on_attach = on_attach,
 }
 require('lspconfig')['clangd'].setup {
+  on_attach = on_attach,
+}
+require('lspconfig')['pyright'].setup {
   on_attach = on_attach,
 }

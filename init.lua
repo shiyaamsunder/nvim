@@ -33,6 +33,7 @@ local options = {
   -- Wrapping
   textwidth=100,
   colorcolumn= "+1",
+  autochdir=false,
 
 }
 
@@ -71,7 +72,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     "lir",
     "DressingSelect",
     "tsplayground",
-    "Markdown",
   },
   callback = function()
     vim.cmd [[
@@ -91,3 +91,6 @@ require("shiyaam.lsp")
 require("shiyaam.tsp")
 require("shiyaam.cmp")
 require("shiyaam.drp")
+require("shiyaam.gitsigns")
+require("shiyaam.harpoon")
+require("shiyaam.dap")

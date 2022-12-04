@@ -74,6 +74,15 @@ return require('packer').startup(function(use)
 
   use 'andweeb/presence.nvim'
 
+  use {
+  'lewis6991/gitsigns.nvim',
+}
+
+  -- Debug Adapter Protocol stuff
+  use 'mfussenegger/nvim-dap'
+  use 'rcarriga/nvim-dap-ui'
+
+
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
