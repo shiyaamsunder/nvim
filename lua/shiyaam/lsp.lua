@@ -1,12 +1,18 @@
 local status_ok, mason = pcall(require, "mason")
 local status_ok2, masonlsp = pcall(require, "mason-lspconfig")
+
+
 if not status_ok then
   return
 end
 if not status_ok2 then
   return
 end
+
 mason.setup()
+
+local servers = { "sumneko_lua", "tsserver", "clangd", "emmet_ls", "pyright"}
+
 masonlsp.setup({
   ensure_installed = { "sumneko_lua", "tsserver", "clangd", "emmet_ls", "pyright"},
   automatic_installation = true
@@ -85,3 +91,4 @@ require('lspconfig')['clangd'].setup {
 require('lspconfig')['pyright'].setup {
   on_attach = on_attach,
 }
+
