@@ -1,3 +1,4 @@
+require("shiyaam.plugins")
 -- ==================================== Setting options ============================================
 local options = {
   background = "dark",
@@ -36,6 +37,12 @@ local options = {
 
 }
 
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+-- Keymaps for better default experience
+-- See `:help vim.keymap.set()`
+vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
 for k, v in pairs(options) do
   vim.opt[k] = v
@@ -83,7 +90,6 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 -- ==========================  Enabling plugins and setting colorscheme =============================
 
-require("shiyaam.plugins")
 require("shiyaam.colorscheme")
 require("shiyaam.keymaps")
 require("shiyaam.lsp")
@@ -92,5 +98,5 @@ require("shiyaam.cmp")
 require("shiyaam.drp")
 require("shiyaam.gitsigns")
 require("shiyaam.harpoon")
-require("shiyaam.dap")
 require("shiyaam.lline")
+require("shiyaam.ts")
