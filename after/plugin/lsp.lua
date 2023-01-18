@@ -3,11 +3,12 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-    'clangd',
     'tsserver',
+    'clangd',
     'eslint',
     'sumneko_lua',
     'rust_analyzer',
+    'pylsp'
 })
 
 local cmp = require('cmp')
@@ -51,6 +52,11 @@ lsp.on_attach(function(client, bufnr)
     if client.name == "eslint" then
         vim.cmd.LspStop('eslint')
         return
+    end
+
+    if client.name == "tsserver" then
+        vim.keymap.set("n", "==", vim.lsp.buf.format, opts)
+        vim.keymap.set("v", "==", vim.lsp.buf.format, opts)
     end
 
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
