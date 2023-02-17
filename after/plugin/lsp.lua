@@ -6,7 +6,7 @@ lsp.ensure_installed({
     'tsserver',
     'clangd',
     'eslint',
-    'sumneko_lua',
+    'lua_ls',
     'rust_analyzer',
     'pyright',
 })
@@ -39,7 +39,7 @@ lsp.set_preferences({
     }
 })
 
-lsp.configure('sumneko_lua', {
+lsp.configure('lua_ls', {
     settings = {
         Lua = {
             diagnostics = { globals = {'vim'}}
