@@ -46,18 +46,19 @@ lsp.configure('lua_ls', {
         }
     }
 })
+
+lsp.configure('eslint', {
+   on_attach = function(client, bufnr)
+     vim.api.nvim_create_autocmd("BufWritePre", {
+       buffer = bufnr,
+       command = "EslintFixAll",
+     })
+   end,
+ })
+
+
 lsp.on_attach(function(client, bufnr)
     local opts = {buffer = bufnr, remap = false}
-
-    if client.name == "eslint" then
-        vim.cmd.LspStop('eslint')
-        return
-    end
-
-    if client.name == "tsserver" then
-        vim.keymap.set("n", "==", vim.lsp.buf.format, opts)
-        vim.keymap.set("v", "==", vim.lsp.buf.format, opts)
-    end
 
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
