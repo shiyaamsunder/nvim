@@ -50,6 +50,7 @@ local plugins = {
     config = function ()
       require'nvim-treesitter.configs'.setup {
         ensure_installed = { "c", "lua", "rust", "javascript", "typescript", "help" },
+        ignore_install = {"bash"},
         sync_install = false,
         auto_install = true,
         highlight = {
@@ -100,7 +101,7 @@ local plugins = {
         name = 'minimal',
         set_lsp_keymaps = true,
         manage_nvim_cmp = true,
-        suggest_lsp_servers = true,
+        suggest_lsp_servers = false,
       })
 
       lsp.ensure_installed({
@@ -154,6 +155,8 @@ local plugins = {
   -- Misc
   -- Rust Tools
   {'simrat39/rust-tools.nvim'},
+
+  {'mfussenegger/nvim-jdtls'}
 }
 
 local opts  = {}
