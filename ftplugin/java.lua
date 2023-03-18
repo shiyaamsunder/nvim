@@ -1,4 +1,10 @@
 local jdtls_path = vim.fn.stdpath('data') .. "/mason/packages/jdtls"
+
+local path_to_lsp_server = jdtls_path .. "/config_linux"
+local path_to_plugins = jdtls_path .. "/plugins/"
+local path_to_jar = path_to_plugins .. "org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar"
+
+
 local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
 local root_dir = require("jdtls.setup").find_root(root_markers)
 if root_dir == "" then
@@ -23,7 +29,12 @@ local config = {
     '--add-modules=ALL-SYSTEM',
     '--add-opens', 'java.base/java.util=ALL-UNNAMED',
     '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
+
+    '-jar', path_to_jar,
+    '-configuration', path_to_lsp_server,
+    '-data', workspace_dir,
   },
+
 
   -- This is the default if not provided, you can remove it. Or adjust as needed.
   -- One dedicated LSP server & client will be started per unique root_dir
@@ -34,14 +45,6 @@ local config = {
   -- for a list of options
   settings = {
     java = {
-      configuration = {
-        runtimes = {
-          {
-            name = "JavaSE-19",
-            path = "/opt/jdk-19.0.2",
-          },
-        }
-      },
       maven = {
         downloadSources = true,
       },
@@ -97,6 +100,7 @@ local config = {
     bundles = {},
   },
 }
+
 
 require('jdtls').start_or_attach(config)
 
