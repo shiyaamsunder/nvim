@@ -11,6 +11,6 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 
 
 exec bash
-echo "Installing LTS node version using nvm"
+echo "Type source ~.bashrc and install node using nvm install --lts"
 
 
