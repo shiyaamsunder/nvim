@@ -98,16 +98,18 @@ local plugins = {
     },
     config = function ()
       local lsp = require('lsp-zero').preset({
-        name = 'minimal',
+        name = 'recommended',
         set_lsp_keymaps = true,
         manage_nvim_cmp = true,
         suggest_lsp_servers = false,
       })
 
+
+      -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
       lsp.ensure_installed({
         'tsserver',
+        'tailwindcss',
         'clangd',
-        'eslint',
         'lua_ls',
         'rust_analyzer',
         'pyright',
@@ -124,16 +126,22 @@ local plugins = {
         }
       })
 
-      lsp.configure('eslint', {
+
+      -- Auto format on save
+      lsp.configure('tsserver', {
         on_attach = function(_, bufnr)
           vim.api.nvim_create_autocmd("BufWritePre", {
             buffer = bufnr,
-            command = "EslintFixAll",
+            command = "lua vim.lsp.buf.format()"
           })
         end,
       })
 
       lsp.setup()
+
+      vim.diagnostic.config({
+        virtual_text = true,
+      })
     end
   },
 
@@ -153,6 +161,27 @@ local plugins = {
 
 
   -- Misc
+  {
+    'JoosepAlviste/nvim-ts-context-commentstring',
+    config= function ()
+      require('nvim-treesitter.configs').setup({
+        context_commentstring = {
+          enable = true,
+          enable_autocmd =false,
+        }
+      }
+      )
+    end
+  },
+
+  {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup({
+        pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
+      })
+    end
+  },
   -- Rust Tools
   {'simrat39/rust-tools.nvim'},
 
