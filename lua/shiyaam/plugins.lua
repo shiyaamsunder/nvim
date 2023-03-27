@@ -104,6 +104,12 @@ local plugins = {
         suggest_lsp_servers = false,
       })
 
+      lsp.setup_nvim_cmp({
+        preselect = 'none',
+        completion = {
+          completeopt = 'menu,menuone,noinsert,noselect'
+        },
+      })
 
       -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
       lsp.ensure_installed({
