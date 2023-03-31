@@ -191,7 +191,21 @@ local plugins = {
   -- Rust Tools
   {'simrat39/rust-tools.nvim'},
 
-  {'mfussenegger/nvim-jdtls'}
+  {'mfussenegger/nvim-jdtls'},
+
+  -- Harpoon 
+  {
+    'ThePrimeagen/harpoon',
+    config = function ()
+      require("harpoon").setup()
+      vim.keymap.set('n', '<leader>ha', ':lua require("harpoon.mark").add_file()<CR>', {})
+      vim.keymap.set('n', '<leader>hf',':lua require("harpoon.ui").toggle_quick_menu()<CR>', {})
+
+      -- nav btw files
+      vim.keymap.set('n', '<leader>hn',':lua require("harpoon.ui").nav_next()<CR>', {})
+      vim.keymap.set('n', '<leader>hp',':lua require("harpoon.ui").nav_prev()<CR>', {})
+    end
+  },
 }
 
 local opts  = {}
