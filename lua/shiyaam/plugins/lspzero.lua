@@ -1,8 +1,9 @@
 --LSP ZERO config
 
+
 return {
   'VonHeikemen/lsp-zero.nvim',
-  branch = 'v1.x',
+  branch = 'v2.x',
   dependencies = {
     -- LSP Support
     'neovim/nvim-lspconfig',
@@ -27,6 +28,10 @@ return {
       set_lsp_keymaps = true,
       manage_nvim_cmp = {
         set_sources = "recommended",
+        set_basic_mappings = true,
+        set_extra_mappings = true,
+        use_luasnip = true,
+        set_format = true,
       },
       suggest_lsp_servers = false,
     })
@@ -42,6 +47,7 @@ return {
       'jdtls',
     })
 
+
     lsp.nvim_workspace()
 
     lsp.configure('lua_ls', {
@@ -53,41 +59,66 @@ return {
     })
 
 
-    -- Auto format on save
-    lsp.configure('tsserver', {
-      on_attach = function(_, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          buffer = bufnr,
-          command = "lua vim.lsp.buf.format()"
-        })
-      end,
+    -- Key bindings using lsp zero
+
+    lsp.format_on_save({
+      servers = {
+        ['lua_ls'] = { 'lua' },
+        ['rust_analyzer'] = { 'rust' },
+        ['tsserver'] = { 'typescriptreact', 'html', 'javascriptreact', 'javascript', 'css' },
+      }
     })
 
-
-    -- Key bindings using lsp zero
     lsp.on_attach(function(_, bufnr)
-      local opts = { buffer = bufnr }
-      vim.keymap.set('n', '<leader>=', '<cmd>lua vim.lsp.buf.format()<cr>', opts)
+      lsp.default_keymaps({ buffer = bufnr })
     end)
 
-
-
+    lsp.skip_server_setup({ 'rust_analyzer' })
     lsp.setup()
+
+    local rust_tools = require('rust-tools')
+
+    rust_tools.setup({
+      server = {
+        on_attach = function(_, bufnr)
+          vim.keymap.set('n', '<leader>ca', rust_tools.hover_actions.hover_actions, { buffer = bufnr })
+        end
+      }
+    })
+    require('lsp-zero').extend_cmp()
+
     local cmp = require('cmp')
     local cmp_action = require('lsp-zero').cmp_action()
+    require('luasnip.loaders.from_vscode').lazy_load()
+
     cmp.setup({
-      preselect = 'item',
-      completion = {
-        completeopt = 'menu,menuone,noinsert'
+      sources = {
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+      },
+      window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+      },
+      formatting = {
+        fields = { 'abbr', 'kind', 'menu' },
+        format = require('lspkind').cmp_format({
+          mode = 'symbol',       -- show only symbol annotations
+          maxwidth = 50,         -- prevent the popup from showing more than provided characters
+          ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
+        })
       },
       mapping = {
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
         ['<C-f>'] = cmp_action.luasnip_jump_forward(),
         ['<C-b>'] = cmp_action.luasnip_jump_backward(),
         ['<Tab>'] = cmp_action.luasnip_supertab(),
         ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
       }
     })
-
     vim.diagnostic.config({
       virtual_text = true,
     })

@@ -12,15 +12,13 @@ return {
   -- Rust Tools
   {
     'simrat39/rust-tools.nvim',
-    lazy = true,
-    ft="rust"
   },
 
   -- Misc
   {
     'JoosepAlviste/nvim-ts-context-commentstring',
     lazy = true,
-    ft="typescriptreact",
+    ft = "typescriptreact",
     config = function()
       require('nvim-treesitter.configs').setup({
         context_commentstring = {
@@ -52,7 +50,7 @@ return {
   {
     'ThePrimeagen/harpoon',
     lazy = true,
-    keys = {"<leader>hf", "<leader>ha", "<leader>hn",  "<leader>hp"},
+    keys = { "<leader>hf", "<leader>ha", "<leader>hn", "<leader>hp" },
     config = function()
       require("harpoon").setup()
       vim.keymap.set('n', '<leader>ha', ':lua require("harpoon.mark").add_file()<CR>', {})
@@ -67,5 +65,8 @@ return {
   -- Vim Obsession
   {
     'tpope/vim-obsession'
-  }
+  },
+
+  -- Icon for autocompeletion
+  { "onsails/lspkind.nvim" },
 }
