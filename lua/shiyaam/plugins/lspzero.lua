@@ -1,4 +1,5 @@
 --LSP ZERO config
+
 return {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v1.x',
@@ -25,11 +26,10 @@ return {
       name = 'recommended',
       set_lsp_keymaps = true,
       manage_nvim_cmp = {
-        set_extra_mappings = true,
+        set_sources = "recommended",
       },
       suggest_lsp_servers = false,
     })
-
 
     -- https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
     lsp.ensure_installed({
@@ -71,7 +71,22 @@ return {
     end)
 
 
+
     lsp.setup()
+    local cmp = require('cmp')
+    local cmp_action = require('lsp-zero').cmp_action()
+    cmp.setup({
+      preselect = 'item',
+      completion = {
+        completeopt = 'menu,menuone,noinsert'
+      },
+      mapping = {
+        ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+        ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+        ['<Tab>'] = cmp_action.luasnip_supertab(),
+        ['<S-Tab>'] = cmp_action.luasnip_shift_supertab(),
+      }
+    })
 
     vim.diagnostic.config({
       virtual_text = true,
