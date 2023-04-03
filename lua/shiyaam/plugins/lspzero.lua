@@ -45,6 +45,7 @@ return {
       'rust_analyzer',
       'pyright',
       'jdtls',
+      'html',
     })
 
 
@@ -65,7 +66,8 @@ return {
       servers = {
         ['lua_ls'] = { 'lua' },
         ['rust_analyzer'] = { 'rust' },
-        ['tsserver'] = { 'typescriptreact', 'html', 'javascriptreact', 'javascript', 'css' },
+        ['tsserver'] = { 'typescriptreact', 'javascriptreact', 'javascript', 'css' },
+        ['html'] = { 'html' },
       }
     })
 
