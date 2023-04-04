@@ -1,6 +1,5 @@
 --LSP ZERO config
-
-
+-- TODO: tidy up the config
 return {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v2.x',
@@ -60,8 +59,6 @@ return {
     })
 
 
-    -- Key bindings using lsp zero
-
     lsp.format_on_save({
       servers = {
         ['lua_ls'] = { 'lua' },
@@ -95,8 +92,11 @@ return {
 
     cmp.setup({
       sources = {
-        { name = 'nvim_lsp' },
         { name = 'luasnip' },
+        { name = 'nvim_lsp' },
+        { name = 'path' },
+        { name = 'buffer' },
+
       },
       window = {
         completion = cmp.config.window.bordered(),
@@ -105,10 +105,18 @@ return {
       formatting = {
         fields = { 'abbr', 'kind', 'menu' },
         format = require('lspkind').cmp_format({
-          mode = 'symbol',       -- show only symbol annotations
-          maxwidth = 50,         -- prevent the popup from showing more than provided characters
-          ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead
+          mode = 'symbol_text',
+          maxwidth = 50,
+          ellipsis_char = '...',
         })
+      },
+      snippet = {
+        expand = function(args)
+          require("luasnip").lsp_expand(args.body)
+        end,
+      },
+      completion = {
+        completeopt = "menu,menuone,noinsert",
       },
       mapping = {
         ['<C-Space>'] = cmp.mapping.complete(),

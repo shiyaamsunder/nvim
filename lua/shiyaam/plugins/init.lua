@@ -69,4 +69,35 @@ return {
 
   -- Icon for autocompeletion
   { "onsails/lspkind.nvim" },
+
+  -- Mini nvim
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+      require("indent_blankline").setup {
+        -- for example, context is off by default, use this to turn it on
+        show_current_context = true,
+        show_current_context_start = true,
+      }
+    end
+  },
+  {
+    'echasnovski/mini.nvim',
+    version = false,
+    config = function()
+      require("mini.basics").setup()
+      require("mini.surround").setup()
+      require("mini.indentscope").setup()
+    end
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("todo-comments").setup()
+    end
+  },
+
+  --TODO hello
 }
