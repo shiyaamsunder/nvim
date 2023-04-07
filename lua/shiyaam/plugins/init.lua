@@ -98,6 +98,4 @@ return {
       require("todo-comments").setup()
     end
   },
-
-  --TODO hello
 }

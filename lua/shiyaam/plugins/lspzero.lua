@@ -1,5 +1,5 @@
 --LSP ZERO config
--- TODO: tidy up the config
+-- TODO tidy up the config
 return {
   'VonHeikemen/lsp-zero.nvim',
   branch = 'v2.x',
