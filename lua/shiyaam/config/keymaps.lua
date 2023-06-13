@@ -13,7 +13,7 @@ vim.keymap.set("n", "N", "Nzz")
 vim.keymap.set("n", "j", "jzz")
 vim.keymap.set("n", "k", "kzz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-s>", "<C-d>zz")
 
 -- Move to the next/previous buffer
 vim.keymap.set("n", '<leader>[', ':bp<CR>')
