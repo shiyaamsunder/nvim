@@ -62,11 +62,6 @@ return {
     end
   },
 
-  -- Vim Obsession
-  {
-    'tpope/vim-obsession'
-  },
-
   -- Icon for autocompeletion
   { "onsails/lspkind.nvim" },
 
