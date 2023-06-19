@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+-- disabled Netrw in favour of NvimTree
+-- vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 
 
 -- Fix * (Keep the cursor position, don't move to next match)
