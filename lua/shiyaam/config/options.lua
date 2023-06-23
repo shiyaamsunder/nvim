@@ -1,3 +1,4 @@
+-- disabling netrw in favour of nvim tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -33,3 +34,6 @@ vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
 
 vim.g.use_nerd_icons = true
+
+-- enabling highlight for treesitter context
+vim.cmd [[hi TreesitterContextBottom gui=underline guisp=Grey]]

@@ -1,16 +1,21 @@
-local function loadTheme(themeUrl, themeName)
+local function loadTheme(themeUrl, themeName, themeConfig)
   local tbl = {
     themeUrl,
     lazy = false,
     priority = 1000,
     config = function()
+      themeConfig()
       vim.cmd([[colorscheme ]] .. themeName)
     end
   }
   return tbl
 end
 
--- vim.g.neon_style = "dark"
+
+local config = function()
+  require('material').setup({ disable = { background = true } })
+end
+
 vim.g.material_style = "deep ocean"
 
 return {
@@ -24,7 +29,7 @@ return {
   --   end,
   -- }
   -- loadTheme("christianchiarulli/nvcode-color-schemes.vim", "gruvbox")
-  loadTheme("marko-cerovac/material.nvim", "material")
+  loadTheme("marko-cerovac/material.nvim", "material", config)
 
 
 }

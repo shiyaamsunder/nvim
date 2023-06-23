@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
--- disabled Netrw in favour of NvimTree
 -- vim.keymap.set("n", "<leader>e", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>")
 
