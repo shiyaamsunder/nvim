@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-
-
 echo "Installing ripgrep"
 sudo apt-get install ripgrep wget
 

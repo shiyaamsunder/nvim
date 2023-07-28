@@ -16,7 +16,15 @@ local config = function()
   require('material').setup({ disable = { background = true } })
 end
 
-vim.g.material_style = "deep ocean"
+
+-- Styles for material theme
+
+-- 1. Oceanic
+-- 2. Deep Ocean
+-- 3. Palenight
+-- 4. Lighter
+-- 5. Darker
+vim.g.material_style = "darker"
 
 return {
   --   {
