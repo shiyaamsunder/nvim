@@ -13,7 +13,7 @@ return {
       {
         debug = false,
         sources = {
-          formatting.prettier.with({ extra_args = { "--no-semi", "--single-quote", "--jsx-single-quote" } }),
+          formatting.prettier.with({}),
           diagnostics.eslint_d,
           code_actions.eslint_d,
 
